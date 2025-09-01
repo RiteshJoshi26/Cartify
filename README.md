@@ -20,7 +20,6 @@ It includes features like user authentication with email verification, product b
   - Track order details
 - 🔑 **Admin Dashboard**
   - Add, edit, delete products
-  - Manage users and orders
 - 📧 **Email Integration**
   - Send OTP to users on signup
   - Secure verification before account activation
@@ -34,7 +33,7 @@ It includes features like user authentication with email verification, product b
 - **Frontend:** EJS, CSS
 - **Backend:** Node.js, Express.js
 - **Database:** MongoDB (Mongoose)
-- **Authentication:** Express-session, bcrypt
+- **Authentication:** Express-session, bcrypt, jwt
 - **Email Service:** Nodemailer
 - **Others:** dotenv, connect-flash
 
