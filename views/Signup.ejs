@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Signup | Cartify</title>
+  <link rel="stylesheet" href="/stylesheet/signup.css">
+  <link rel="stylesheet" href="/stylesheet/flashMessage.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+  <%- include('partials/flash') %>
+
+
+    <div class="container">
+      <div class="form-box">
+        <h2>Create Account</h2>
+        <p class="subtitle">Join us and start shopping smarter!</p>
+        <form method="post" action="/auth/signup">
+          <div class="input-group">
+            <i class="fa fa-user"></i>
+            <input type="text" placeholder="Full Name" name="name" required>
+          </div>
+          <div class="input-group">
+            <i class="fa fa-envelope"></i>
+            <input type="email" placeholder="Email" name="email" required>
+          </div>
+          <div class="input-group">
+            <i class="fa fa-lock"></i>
+            <input id="password" type="password" placeholder="Password" name="password" required>
+          </div>
+          <div class="input-group">
+            <i class="fa fa-lock"></i>
+            <input id="confirmPassword" type="password" placeholder="Confirm Password" name="confirmPassword" required>
+          </div>
+          <!-- User Type -->
+          <div class="user-type">
+            <input type="radio" id="role-user" name="role" value="user">
+            <label for="role-user">User</label>
+
+            <input type="radio" id="role-admin" name="role" value="admin">
+            <label for="role-admin">Admin</label>
+          </div>
+
+          <button type="submit" class="btn">Sign Up</button>
+        </form>
+        <p class="login-link">Already have an account? <a href="/auth/login">Login</a></p>
+      </div>
+    </div>
+
+</body>
+<script>
+  const form = document.getElementById("signupForm");
+
+  form.addEventListener("submit", function (e) {
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+
+    if (password !== confirmPassword) {
+      e.preventDefault(); // stop form submission
+      alert("Passwords do not match!");
+    }
+  });
+</script>
+
+</html>

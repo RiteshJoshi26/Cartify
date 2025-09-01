@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout | Cartify</title>
+    <link rel="stylesheet" href="/stylesheet/checkout.css">
+    <link rel="stylesheet" href="/stylesheet/flashMessage.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <%- include('partials/flash') %>
+    <div class="checkout-container">
+        <h2>Checkout</h2>
+
+        <div class="checkout-grid">
+            <!-- Address Form -->
+            <div class="checkout-left">
+                <h3>Shipping Address</h3>
+                <form action="/order/place" method="POST">
+                    <textarea name="address" placeholder="Enter your delivery address" required></textarea>
+
+                    <button type="submit" class="btn-place">Place Order</button>
+                </form>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="checkout-right">
+                <h3>Order Summary</h3>
+                <% if (products && products.length> 0) { %>
+                    <% let total=0; %>
+                        <% products.forEach(item=> { %>
+                            <div class="order-item">
+                                <p>
+                                    <%= item.productId.name%> (x<%= item.quantity %>)
+                                </p>
+                                <p>₹<%= item.productId.price * item.quantity %>
+                                </p>
+                            </div>
+                            <% total +=item.productId.price * item.quantity; %>
+                                <% }) %>
+                                    <hr>
+                                    <p class="total">Total: ₹<%= total %>
+                                    </p>
+                                    <% } else { %>
+                                        <p>No items in your cart.</p>
+                                        <% } %>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

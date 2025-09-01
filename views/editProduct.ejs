@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Product</title>
+    <link rel="stylesheet" href="/stylesheet/editproduct.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Update Product</h1>
+        <form action="/admin/edit/<%= product._id %>" method="post" enctype="multipart/form-data" class="product-form">
+
+            <!-- Product Name -->
+            <div class="form-group">
+                <label for="productName">Product Name</label>
+                <input type="text" id="productName" name="productName" placeholder="Enter product name"
+                    value="<%= product.productName %>" required>
+            </div>
+
+            <!-- Price -->
+            <div class="form-group">
+                <label for="price">Price (₹)</label>
+                <input type="number" id="price" name="price" placeholder="Enter price" value="<%= product.price %>"
+                    required>
+            </div>
+
+            <!-- Description -->
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description" name="description" placeholder="Enter product description" rows="4"
+                    required><%= product.description %></textarea>
+            </div>
+
+            <!-- Category -->
+            <div class="form-group">
+                <label for="category">Category</label>
+                <input type="text" id="category" name="category" placeholder="Enter product category"
+                    value="<%= product.category %>" required>
+            </div>
+
+            <!-- Product Image -->
+            <div class="form-group">
+                <label for="productImage">Product Image</label>
+                <input type="file" id="productImage" name="productImage" accept="image/*">
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="btn">Update Product</button>
+        </form>
+    </div>
+</body>
+
+</html>

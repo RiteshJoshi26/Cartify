@@ -1,0 +1,176 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", system-ui, sans-serif;
+}
+
+html {
+    font-size: 16px;
+    /* base = 1rem */
+}
+
+body {
+    background: #f3f4f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1.25rem;
+}
+
+/* Card container */
+.container {
+    width: 100%;
+    max-width: 32rem;
+    /* 520px */
+    background: #fff;
+    padding: 2rem 1.75rem;
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 1.875rem rgba(0, 0, 0, 0.08);
+    /* 8px 30px */
+    animation: fadeIn 0.4s ease;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 1.75rem;
+    color: #111827;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+/* Form layout */
+.product-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.125rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    color: #374151;
+    font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 0.75rem 0.9rem;
+    border: 0.1rem solid #e5e7eb;
+    border-radius: 0.625rem;
+    /* 10px */
+    font-size: 0.95rem;
+    background: #f9fafb;
+    transition: all 0.25s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #3b82f6;
+    background: #fff;
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.25);
+}
+
+textarea {
+    resize: none;
+    min-height: 6.25rem;
+    /* 100px */
+}
+
+/* Button */
+.btn {
+    padding: 0.9rem;
+    background: #3b82f6;
+    border: none;
+    border-radius: 0.625rem;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.btn:hover {
+    background: #2563eb;
+    transform: translateY(-0.06rem);
+    box-shadow: 0 0.25rem 0.75rem rgba(37, 99, 235, 0.35);
+}
+
+/* 🔹 Responsive */
+@media (max-width: 48rem) {
+
+    /* 768px */
+    .container {
+        padding: 1.5rem 1.25rem;
+        max-width: 95%;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        font-size: 0.9rem;
+        padding: 0.65rem 0.75rem;
+    }
+
+    .btn {
+        font-size: 0.95rem;
+        padding: 0.75rem;
+    }
+}
+
+@media (max-width: 30rem) {
+
+    /* 480px */
+    body {
+        padding: 0.75rem;
+    }
+
+    .container {
+        padding: 1.25rem 1rem;
+        border-radius: 0.75rem;
+    }
+
+    h1 {
+        font-size: 1.3rem;
+    }
+
+    .form-group label {
+        font-size: 0.85rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        font-size: 0.85rem;
+        padding: 0.6rem 0.65rem;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+        padding: 0.7rem;
+    }
+}
+
+/* Fade-in effect */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(0.75rem);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cartify | Search</title>
+    <link rel="stylesheet" href="/stylesheet/search.css">
+    <link rel="stylesheet" href="/stylesheet/flashMessage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <%- include('partials/flash') %>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">Cartify</div>
+        <nav class="nav-links">
+            <a href="/auth/dashboard">Home</a>
+            <a href="/auth/cart"><i class="fa fa-shopping-cart"></i> Cart</a>
+            <a href="/order/orders">Orders</a>
+            <a href="/auth/logout">Logout</a>
+        </nav>
+        <div class="menu-toggle"><i class="fa fa-bars"></i></div>
+    </header>
+
+    <!-- Search -->
+    <section class="search-section">
+        <form class="search-bar" method="get" action="/auth/product/search">
+            <input type="text" name="q" placeholder="Search products..." value="<%= query || '' %>">
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+    </section>
+
+    <!-- Search Results -->
+    <section class="products">
+        <% if (products.length > 0) { %>
+            <% products.forEach(product => { %>
+                <div class="product-card">
+                    <img src="data:<%= product.productImage.contentType %>;base64,<%= product.productImage.data.toString('base64') %>"
+                        alt="<%= product.productName %>">
+                    <h3><%= product.productName %></h3>
+                    <p class="price">₹ <%= product.price %></p>
+                    <p class="category">
+                        <%= product.category.charAt(0).toUpperCase() + product.category.slice(1) %>
+                    </p>
+                    <form action="/auth/add/<%= product._id %>" method="POST">
+                        <button type="submit" class="btn">Add to Cart</button>
+                    </form>
+                </div>
+            <% }) %>
+        <% } else { %>
+            <p class="no-results">No products found for "<%= query %>"</p>
+        <% } %>
+    </section>
+
+    <script>
+        // Mobile menu toggle
+        const toggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('.nav-links');
+        toggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+    </script>
+</body>
+
+</html>

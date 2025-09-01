@@ -1,0 +1,25 @@
+<% if (success_msg && success_msg.length> 0) { %>
+    <div class="flash-message success">
+        <span>
+            <%= success_msg %>
+        </span>
+        <button class="close-btn" onclick="this.parentElement.style.display='none'">&times;</button>
+    </div>
+    <% } %>
+
+        <% if (error_msg && error_msg.length> 0) { %>
+            <div class="flash-message error">
+                <span>
+                    <%= error_msg %>
+                </span>
+                <button class="close-btn" onclick="this.parentElement.style.display='none'">&times;</button>
+            </div>
+            <% } %>
+
+
+                <script>
+                    // Auto hide after 5 sec
+                    setTimeout(() => {
+                        document.querySelectorAll('.flash-message').forEach(msg => msg.style.display = 'none');
+                    }, 1250);
+                </script>

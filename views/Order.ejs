@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Your Orders | Cartify</title>
+    <link rel="stylesheet" href="/stylesheet/order.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="orders-container">
+        <h2>Your Orders</h2>
+
+        <% if (orders && orders.length> 0) { %>
+            <% orders.forEach(order=> { %>
+                <div class="order-card">
+                    <div class="order-header">
+                        <p><strong>Order ID:</strong>
+                            <%= order._id %>
+                        </p>
+                        <p><strong>Date:</strong>
+                            <%= order.createdAt.toDateString() %>
+                        </p>
+                        <p><strong>Status:</strong> <span class="status <%= order.status.toLowerCase() %>">
+                                <%= order.status %>
+                            </span></p>
+                    </div>
+
+                    <div class="order-products">
+                        <% order.products.forEach(item=> { %>
+                            <div class="product-item">
+                                <p>
+                                    <%= item.product.productName %> (x<%= item.quantity %>)
+                                </p>
+                                <p>₹<%= item.product.price * item.quantity %>
+                                </p>
+                            </div>
+                            <% }) %>
+                    </div>
+
+                    <div class="order-footer">
+                        <p><strong>Total:</strong> ₹<%= order.totalAmount %>
+                        </p>
+                        <p><strong>Payment:</strong>
+                            <%= order.paymentStatus %>
+                        </p>
+                        <p><strong>Address:</strong>
+                            <%= order.address %>
+                        </p>
+                    </div>
+                </div>
+                <% }) %>
+                    <% } else { %>
+                        <p class="no-orders">You haven't placed any orders yet.</p>
+                        <% } %>
+    </div>
+</body>
+
+</html>

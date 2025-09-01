@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cartify | Home</title>
+    <link rel="stylesheet" href="/stylesheet/home.css">
+    <link rel="stylesheet" href="/stylesheet/flashMessage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <%- include('partials/flash') %>
+        <!-- Navbar -->
+        <header class="navbar">
+            <div class="logo">Cartify</div>
+            <nav class="nav-links">
+                <a href="/">Home</a>
+                <a href="/auth/cart"><i class="fa fa-shopping-cart"></i> Cart</a>
+                <a href="/auth/login">Login</a>
+                <a href="/auth/signup">Signup</a>
+            </nav>
+            <div class="menu-toggle"><i class="fa fa-bars"></i></div>
+        </header>
+
+        <!-- Search -->
+        <!-- <section class="search-section">
+        <form class="search-bar">
+            <input id="search" type="text" placeholder="Search products...">
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+    </section> -->
+
+        <!-- Products -->
+        <section class="products">
+            <% allProducts.forEach(product=> { %>
+                <div class="product-card">
+                    <img src="data:<%= product.productImage.contentType %>;base64,<%= product.productImage.data.toString('base64') %>"
+                        alt="Product 1">
+                    <h3>
+                        <%= product.productName %>
+                    </h3>
+                    <p class="price">₹ <%= product.price %>
+                    </p>
+                    <a href="/auth/login" class="btn">Add to Cart</a>
+                </div>
+                <% }) %>
+        </section>
+
+        <script>
+            // Mobile menu toggle
+            const toggle = document.querySelector('.menu-toggle');
+            const nav = document.querySelector('.nav-links');
+            toggle.addEventListener('click', () => {
+                nav.classList.toggle('active');
+            });
+
+            // const search = document.getElementById('search')
+            // search.addEventListener('input', (e) => {
+            //     console.log(e.target.value)
+            // })
+        </script>
+</body>
+
+</html>

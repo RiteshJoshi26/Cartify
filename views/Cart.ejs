@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Shopping Cart | Cartify</title>
+  <link rel="stylesheet" href="/stylesheet/cart.css">
+  <link rel="stylesheet" href="/stylesheet/flashMessage.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+<%- include('partials/flash') %>
+  <div class="cart-container">
+    <h1>Your Shopping Cart</h1>
+
+    <div class="cart-wrapper">
+      <!-- Cart Items -->
+      <div class="cart-items">
+        <% if (findProduct && findProduct.length> 0) { %>
+          <% findProduct.forEach(product=> { %>
+            <div class="cart-item">
+              <img
+                src="data:<%= product.productImage.contentType %>;base64,<%= product.productImage.data.toString('base64') %>"
+                alt="Product">
+
+              <div class="item-details">
+                <h3>
+                  <%= product.productName %>
+                </h3>
+                <p class="price">₹<%= product.price %>
+                </p>
+
+                <!-- Quantity Update Form -->
+                <form action="/auth/update/<%= product._id %>" method="POST" class="quantity">
+                  <button type="submit" name="action" value="decrease">-</button>
+                  <input type="number" name="quantity" value="<%= product.quantity %>" min="1">
+                  <button type="submit" name="action" value="increase">+</button>
+                </form>
+
+                <!-- Remove Button -->
+                <form action="/auth/remove/<%= product._id %>" method="POST">
+                  <button type="submit" class="remove">
+                    <i class="fa fa-trash"></i> Remove
+                  </button>
+                </form>
+              </div>
+            </div>
+            <% }) %>
+              <% } else { %>
+                <p class="empty-cart">Your cart is empty. <a href="/auth/dashboard">Start Shopping</a></p>
+                <% } %>
+      </div>
+
+      <!-- Cart Summary -->
+      <div class="cart-summary">
+        <h2>Order Summary</h2>
+        <p>Subtotal (<%= totalItems %> items): <span>₹<%= subtotal %></span></p>
+        <p>Shipping: <span>Free</span></p>
+        <hr>
+        <h3>Total: <span>₹<%= subtotal %></span></h3>
+
+        <% if (findProduct && findProduct.length> 0) { %>
+          <button class="checkout" onclick="window.location.href='/order/checkout'"><i class="fa fa-credit-card"></i>
+            Proceed to
+            Checkout</button>
+          <% } %>
+
+            <button onclick="window.location.href='/auth/dashboard'" class="continue">
+              <i class="fa fa-shopping-bag"></i> Continue Shopping
+            </button>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

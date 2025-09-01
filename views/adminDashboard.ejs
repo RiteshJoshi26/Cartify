@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/stylesheet/admin.css">
+    <link rel="stylesheet" href="/stylesheet/flashMessage.css">
+</head>
+
+<body>
+<%- include('partials/flash') %>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">Admin Dashboard</div>
+
+        <!-- Mobile Menu Toggle -->
+        <input type="checkbox" id="menu-toggle">
+        <label for="menu-toggle" class="menu-icon">☰</label>
+
+        <ul class="nav-links">
+            <li><a href="/admin/dashboard">Home</a></li>
+            <li><a href="/admin/createproduct">Create Product</a></li>
+            <li><a href="/admin/showproduct">Products</a></li>
+            <li><a href="/auth/logout">Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <h2 class="greeting">Welcome, Admin 👋</h2>
+
+        <!-- Product Card Example -->
+        <div class="product-list">
+            <% products.forEach(product=> { %>
+                <div class="product-card">
+                    <img src="data:<%= product.productImage.contentType %>;base64,<%= product.productImage.data.toString('base64') %>"
+                        alt="Product 1">
+                    <div class="product-info">
+                        <h3>
+                            <%= product.productName %>
+                        </h3>
+                        <p>
+                            <%= product.description %>
+                        </p>
+                        <span class="price">₹<%= product.price %></span>
+                    </div>
+                </div>
+                <% }) %>
+        </div>
+    </main>
+
+</body>
+
+</html>

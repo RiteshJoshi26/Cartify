@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Products</title>
+    <link rel="stylesheet" href="/stylesheet/adminproduct.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>All Products</h1>
+
+        <table class="products-table">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Product Name</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Price (₹)</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Example Product Row -->
+                <% products.forEach(product=> { %>
+                    <tr>
+                        <td><img src="data:<%= product.productImage.contentType %>;base64,<%= product.productImage.data.toString('base64') %>"
+                                alt="Product"></td>
+                        <td>
+                            <%= product.productName %>
+                        </td>
+                        <td>
+                            <%= product.description %>
+                        </td>
+                        <td>
+                            <%= product.category.charAt(0).toUpperCase() + product.category.slice(1) %>
+                        </td>
+                        <td>
+                            <%= product.price %>
+                        </td>
+                        <td>
+                            <form action="/admin/edit/<%= product._id %>" method="get">
+                                <button type="submit" class="btn edit">Edit</button>
+                            </form>
+                            <form action="/admin/delete/<%= product._id %>" method="post">
+                                <button type="submit" class="btn delete">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <% }) %>
+                        <!-- Add more products dynamically here -->
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Verify Account | Cartify</title>
+    <link rel="stylesheet" href="/stylesheet/verify.css">
+</head>
+
+<body>
+    <div class="auth-container">
+        <h2>Verify Your Account</h2>
+
+        <%- include('partials/flash') %>
+
+            <form action="/auth/verify" method="POST">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" placeholder="Enter your email" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Verification Code</label>
+                    <input type="text" name="otp" placeholder="Enter OTP" required>
+                </div>
+
+                <button type="submit">Verify</button>
+            </form>
+
+            <p>Didn’t receive OTP? <a href="#">Resend OTP</a></p>
+    </div>
+</body>
+
+</html>

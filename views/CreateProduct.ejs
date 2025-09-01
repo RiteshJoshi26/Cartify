@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Create Product | Cartify</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheet/createproduct.css" />
+    <link rel="stylesheet" href="/stylesheet/flashMessage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+    <%- include('partials/flash') %>
+    <div class="container">
+        <div class="card">
+            <div class="header">
+                <h2><i class="fa fa-box-open"></i> Create New Product</h2>
+                <p class="subtitle">Add details to list a new item in your store.</p>
+            </div>
+
+            <form action="/admin/create" method="post" enctype="multipart/form-data" class="form">
+                <!-- Basic Info -->
+                <div class="grid two">
+                    <div class="field">
+                        <label for="title">Product Name</label>
+                        <input type="text" id="title" name="productName" placeholder="e.g., Classic Leather Backpack"
+                            required />
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" rows="5"
+                        placeholder="Write a concise, compelling description..." required></textarea>
+                </div>
+
+                <!-- Pricing & Stock -->
+                <div class="grid three">
+                    <div class="field">
+                        <label for="price">Price (₹)</label>
+                        <input type="number" id="price" name="price" placeholder="e.g., 2499" min="0" step="0.01"
+                            required />
+                    </div>
+                </div>
+
+                <!-- Classification -->
+                <div class="grid three">
+                    <div class="field">
+                        <label for="category">Category</label>
+                        <select id="category" name="category" required>
+                            <option value="" disabled selected>Select category</option>
+                            <option value="bags">Bags</option>
+                            <option value="shoes">Shoes</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="fashion">Fashion</option>
+                            <option value="home">Home & Living</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Images -->
+                <div class="field">
+                    <label>Product Images</label>
+                    <div class="upload">
+                        <i class="fa fa-cloud-arrow-up"></i>
+                        <p>Drag & drop images here or <span>browse</span></p>
+                        <small>PNG, JPG up to 5MB each. You can select multiple.</small>
+                        <input type="file" name="productImage" id="images" required/>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="actions">
+                    <a class="btn ghost" href="/product/products"><i class="fa fa-arrow-left"></i> Cancel</a>
+                    <button type="submit" class="btn primary"><i class="fa fa-save"></i> Create Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
